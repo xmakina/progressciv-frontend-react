@@ -1,4 +1,4 @@
-import { Demand, ProductionList, SingleUpgrade, Store, Supply, Upgrade } from 'progressciv/dist/component'
+import { Demand, ProductionList, Store, Supply, Upgrade } from 'progressciv/dist/component'
 import { ISystem, Entity, HasComponent, getComponent, hasComponent } from 'progressciv/dist/utils'
 import React, { ReactElement, useState } from 'react'
 import StorageView from '../../interface/StorageView'
@@ -10,6 +10,7 @@ import { UpgradeView } from '../../interface/UpgradeView'
 import Upgrades from '../Upgrades/Upgrades'
 import Productions from '../Productions/Productions'
 import { useParams } from 'react-router-dom'
+import { DisplayItem, EntityComponents } from '../../utils/DisplayItem'
 
 export class ItemRenderSystem implements ISystem {
   public static setItems: any = () => {}
@@ -21,22 +22,16 @@ export class ItemRenderSystem implements ISystem {
       .filter(HasComponent(Demand))
       .filter(HasComponent(ProductionList))
       .filter(HasComponent(Supply))
-      .map((e) => ({
-        id: e.id,
-        demand: getComponent(e, Demand),
-        productionList: getComponent(e, ProductionList),
-        supply: getComponent(e, Supply),
-        upgrades: hasComponent(e, Upgrade)
-          ? getComponent(e, Upgrade).upgrades
-            .reduce<SingleUpgrade[]>((acc, u) => {
-            acc.push(u)
-            return acc
-          }, [])
-          : []
-      }))
+      .map<EntityComponents>((e) => ({
+      id: e.id,
+      demand: getComponent(e, Demand),
+      productionList: getComponent(e, ProductionList),
+      supply: getComponent(e, Supply),
+      upgrade: hasComponent(e, Upgrade) ? getComponent(e, Upgrade) : new Upgrade({ upgrades: [] })
+    }))
 
     const itemsView: ItemView[] = items.map<ItemView>((i) => ({
-      id: i.id,
+      displayItem: DisplayItem(store, i),
       product: i.supply.product.resource,
       quantity: i.supply.product.quantity,
       storage: store.stocks[i.supply.product.resource],
@@ -55,7 +50,7 @@ export class ItemRenderSystem implements ISystem {
         .map((k) => ({
           resource: k, quantity: i.demand.store.stocks[k] ?? 0, capacity: i.demand.store.capacities[k]
         })),
-      upgrades: i.upgrades?.map((u) => ({
+      upgrades: i.upgrade.upgrades.map((u) => ({
         amount: u.amount,
         aspect: u.aspect,
         operation: u.operation,
@@ -77,7 +72,7 @@ export interface ProductionView {
 }
 
 interface ItemView {
-  id: string
+  displayItem: boolean
   product: string
   quantity: number
   storage: number
@@ -97,23 +92,24 @@ const ToItem = (item: ItemView, i: number): ReactElement =>
   <div className='item' key={i}>
     {i === 0 &&
       <h1 className='label'>
-        {ToEmoji(item.product)} <span hidden={HasEmoji(item.product) === false}>{item.product}</span>
+        {ToEmoji(item.product)} <span hidden={!HasEmoji(item.product)}>{item.product}</span>
       </h1>}
-    <div className='item-details'>
-      <div className='storehouse'>
-        <div className='open-button'>
-          {item.canWork && item.requirements.length > 0 && <ToggleButton icon={ToEmoji('allow demand to be met')} state={item.open} onClick={() => item.handleOpen()} />}
+    {item.displayItem &&
+      <div className='item-details'>
+        <div className='storehouse'>
+          <div className='open-button'>
+            {item.canWork && item.requirements.length > 0 && <ToggleButton icon={ToEmoji('allow demand to be met')} state={item.open} onClick={() => item.handleOpen()} />}
+          </div>
+          <Requirements requirements={item.requirements} met={item.met} />
         </div>
-        <Requirements requirements={item.requirements} met={item.met} />
-      </div>
-      <div className='workhouse'>
-        <div className='working-button'>
-          {item.canWork && <ToggleButton icon={ToEmoji('allow production')} state={item.working} onClick={() => item.handleWorking()} />}
+        <div className='workhouse'>
+          <div className='working-button'>
+            {item.canWork && <ToggleButton icon={ToEmoji('allow production')} state={item.working} onClick={() => item.handleWorking()} />}
+          </div>
+          <Productions productions={item.productions} />
         </div>
-        <Productions productions={item.productions} />
-      </div>
-      <Upgrades upgrades={item.upgrades} />
-    </div>
+        <Upgrades upgrades={item.upgrades} />
+      </div>}
   </div>
 
 interface Params {

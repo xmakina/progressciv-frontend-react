@@ -2,6 +2,7 @@ import { Demand, ProductionList, Store, Supply, Upgrade } from 'progressciv/dist
 import { Entity, getComponent, hasComponent, HasComponent, ISystem } from 'progressciv/dist/utils/ecs'
 import React, { ReactElement, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { DisplayItem, EntityComponents } from '../../utils/DisplayItem'
 import ToEmoji from '../../utils/ToEmoji'
 import ToggleButton from '../ToggleButton/ToggleButton'
 import './Storage.css'
@@ -19,43 +20,6 @@ interface StorageView {
   handleWorking: () => void
 }
 
-const DisplayItem = (store: Store, i: EntityComponents): boolean => {
-  const hasProduction = i.productionList.maximumActive > 0
-  const hasExisted = store.existed[i.supply.product.resource]
-  const hasNoDemands = Object.keys(i.demand.demands).length === 0
-  const hasAllDemandsCreated = Object.keys(i.demand.demands).reduce<boolean>((acc, k) => acc && store.existed[k], true)
-  const hasProductionUpgrades = i.upgrades.upgrades.filter((u) => u.aspect === 'production').length > 0
-  const hasProductionUpgradesWhichCanBeBuilt = i.upgrades.upgrades
-    .filter((u) => u.aspect === 'production')
-    .reduce<string[]>((acc, u) => [...acc, ...Object.keys(u.demands)], [])
-    .reduce<boolean>((acc, k) => acc && store.existed[k], true)
-
-  if (hasExisted) {
-    return true
-  }
-
-  if (hasProduction && hasNoDemands) {
-    return true
-  }
-
-  if (hasProduction && hasAllDemandsCreated) {
-    return true
-  }
-
-  if (hasProductionUpgrades && hasProductionUpgradesWhichCanBeBuilt) {
-    return true
-  }
-
-  return false
-}
-
-interface EntityComponents {
-  demand: Demand
-  productionList: ProductionList
-  supply: Supply
-  upgrades: Upgrade
-}
-
 export class StorageRenderSystem implements ISystem {
   public static setStorage: any = () => {}
 
@@ -70,7 +34,7 @@ export class StorageRenderSystem implements ISystem {
       demand: getComponent(e, Demand),
       productionList: getComponent(e, ProductionList),
       supply: getComponent(e, Supply),
-      upgrades: hasComponent(e, Upgrade) ? getComponent(e, Upgrade) : new Upgrade({ upgrades: [] })
+      upgrade: hasComponent(e, Upgrade) ? getComponent(e, Upgrade) : new Upgrade({ upgrades: [] })
     }))
 
     const itemsView: StorageView[] = items.map<StorageView>((i) => ({
