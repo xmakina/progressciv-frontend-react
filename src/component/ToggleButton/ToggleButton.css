@@ -1,0 +1,13 @@
+.button {
+    cursor: pointer;
+    flex: 0.25;
+    border-radius: 0.25em;
+    background-color: darkred;
+    padding: 0.1em;
+    margin-left: 0.25em;
+    margin-right: 0.25em;
+}
+
+.button.open {
+    background-color: darkgreen;
+}

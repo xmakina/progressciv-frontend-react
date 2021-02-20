@@ -1,0 +1,25 @@
+.storage {
+    margin-right: 1em;
+}
+
+.storage-items {
+    display: flex;
+    flex-direction: column;
+    padding-right: 0.5em;
+}
+
+.storage-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.product-stockpile {
+    display: flex;
+    border: 1px solid blue;
+    justify-content: flex-start;
+}
+
+.stockpile {
+    margin-left: 0.5em;
+}

@@ -1,0 +1,7 @@
+.production {
+    flex-shrink: 1;
+}
+
+.production .rate {
+    font-size: 0.5em;
+}

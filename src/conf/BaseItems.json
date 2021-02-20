@@ -1,0 +1,108 @@
+{
+    "items": [
+    {
+        "product": "wheat",
+        "quantity": 2,
+        "time": 1000,
+        "startingActive": 1,
+        "upgrades": [{
+                "aspect": "production",
+                "operation": "+",
+                "amount": 1,
+                "demands": { "farm": 1 }
+            }
+        ]
+    },
+    {
+        "product": "wood",
+        "quantity": 1,
+        "time": 1000,
+        "startingActive": 1,
+        "upgrades": [{
+                "aspect": "production",
+                "operation": "+",
+                "amount": 1,
+                "demands": { "forest": 1 }
+            }
+        ]
+    },
+    {
+        "product": "worker",
+        "quantity": 1,
+        "time": 3000,
+        "startingActive": 1,
+        "demands": { "wheat": 10 }
+    },
+    {
+        "product": "farm",
+        "quantity": 1,
+        "time": 10000,
+        "startingActive": 1,
+        "demands": {
+            "wood": 5,
+            "wheat": 2
+        },
+        
+        "upgrades": [{
+            "aspect": "production",
+            "operation": "+",
+            "amount": 1,
+            "demands": { "building-site": 1 }
+        }]
+
+    },
+    {
+        "product": "forest",
+        "quantity": 1,
+        "time": 10000,
+        "startingActive": 1,
+        "demands": {
+            "wood": 10
+        }
+    },
+    {
+        "product": "coal",
+        "quantity": 5,
+        "time": 8000,
+        "startingActive": 0,
+        
+        "upgrades": [{
+            "aspect": "production",
+            "operation": "+",
+            "amount": 1,
+            "demands": { "mine": 1 }
+        }]
+    },
+    {
+        "product": "fuel",
+        "quantity": 1,
+        "time": 2000,
+        "startingActive": 1,
+        "demands": {"wood": 3}
+    },
+    {
+        "product": "fuel",
+        "quantity": 5,
+        "time": 2000,
+        "startingActive": 1,
+        "demands": {"coal": 1}
+    },
+    {
+        "product": "mine",
+        "quantity": 1,
+        "time": 20000,
+        "startingActive": 1,
+        "demands": {
+            "wood": 25
+        }
+    },
+    {
+        "product": "furnace",
+        "quantity": 1,
+        "time": 20000,
+        "startingActive": 1,
+        "demands": {
+            "stone": 5
+        }
+    }]
+}

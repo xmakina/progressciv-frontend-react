@@ -1,0 +1,21 @@
+.App {
+    text-align: center;
+    margin-top: 6em;
+}
+
+.App-logo {
+    height: 6em;
+    pointer-events: none;
+}
+
+.App-header {
+    position: fixed;
+    top: 0.2em;
+    left: 0.2em;
+}
+
+.App-content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
