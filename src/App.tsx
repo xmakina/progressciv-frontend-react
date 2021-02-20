@@ -5,7 +5,7 @@ import BaseItems from './conf/BaseItems.json'
 import './App.css'
 import Home from './component/Home/Home'
 import { StorageRenderSystem } from './component/Storage/Storage'
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 import logo from './logo.png'
 
 let isRunning: boolean = false
@@ -43,9 +43,9 @@ function App (): ReactElement {
         </div>
       </div>
       <div className='App'>
-        <BrowserRouter>
+        <HashRouter>
           <Home />
-        </BrowserRouter>
+        </HashRouter>
       </div>
     </div>
   )
