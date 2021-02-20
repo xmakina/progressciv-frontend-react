@@ -11,12 +11,14 @@ import logo from './logo.png'
 let isRunning: boolean = false
 const Update = (progressCivAPI: ProgressCivAPI) => () => {
   if (isRunning) {
-    isRunning = false
+    console.log('killed')
     return
   }
 
+  isRunning = true
   progressCivAPI.Update()
   window.setTimeout(Update(progressCivAPI), 25)
+  isRunning = false
 }
 
 function App (): ReactElement {
@@ -31,7 +33,6 @@ function App (): ReactElement {
     progressCivAPI.Instance.systems.push(storageRenderSystem)
 
     save.current = () => progressCivAPI.Save()
-    isRunning = true
     window.setTimeout(Update(progressCivAPI), 100)
   }, [])
 
