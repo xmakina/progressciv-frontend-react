@@ -1,6 +1,6 @@
 {
   "name": "progressciv-frontend",
-  "homepage": "https://xmakina.github.io/progressciv-frontend-react",
+  "homepage": "https://xmakina.github.io/progressciv-frontend-react/",
   "version": "0.0.1",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
