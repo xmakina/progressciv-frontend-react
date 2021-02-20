@@ -1,5 +1,4 @@
-import { Demand, ProductionList, Store, Supply, Upgrade } from 'progressciv/dist/component'
-import { ISystem, Entity, HasComponent, getComponent, hasComponent } from 'progressciv/dist/utils'
+import { Demand, ProductionList, Store, Supply, Upgrade, ISystem, Entity, HasComponent, getComponent, hasComponent } from 'progressciv'
 import React, { ReactElement, useState } from 'react'
 import StorageView from '../../interface/StorageView'
 import ToEmoji, { HasEmoji } from '../../utils/ToEmoji'

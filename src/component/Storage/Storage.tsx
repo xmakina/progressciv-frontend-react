@@ -1,5 +1,4 @@
-import { Demand, ProductionList, Store, Supply, Upgrade } from 'progressciv/dist/component'
-import { Entity, getComponent, hasComponent, HasComponent, ISystem } from 'progressciv/dist/utils/ecs'
+import { Demand, ProductionList, Store, Supply, Upgrade, Entity, getComponent, hasComponent, HasComponent, ISystem } from 'progressciv'
 import React, { ReactElement, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { DisplayItem, EntityComponents } from '../../utils/DisplayItem'

@@ -1,4 +1,4 @@
-import { Demand, ProductionList, Store, Supply, Upgrade } from 'progressciv/dist/component'
+import { Demand, ProductionList, Store, Supply, Upgrade } from 'progressciv'
 
 export const DisplayItem = (store: Store, i: EntityComponents): boolean => {
   const hasProduction = i.productionList.maximumActive > 0

@@ -1,15 +1,14 @@
 version: '3.7'
 
 services:
-
-  sample:
-    container_name: sample
+  frontend:
+    container_name: progressciv-frontend-react
     build:
       context: .
       dockerfile: Dockerfile
-    volumes:
-      - '.:/app'
-      - '/app/node_modules'
+    # volumes:
+    #   - '.:/app'
+    #   - '/app/node_modules'
     ports:
       - 4000:3000
     environment:
