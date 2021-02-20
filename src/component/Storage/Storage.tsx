@@ -20,7 +20,7 @@ interface StorageView {
 }
 
 export class StorageRenderSystem implements ISystem {
-  public static setStorage: any = () => {}
+  public static setStorage: any = () => { }
 
   update (_: number, entities: Entity[]): void {
     const store = getComponent(entities
@@ -66,7 +66,11 @@ const ToStorageView = (unique: Unique<StorageView>, index: number): ReactElement
     <td className='product'>
       <Link to={`/${unique.value.product}`}>{ToEmoji(unique.value.product)}</Link>
     </td>
-    <td className='stockpile'>{unique.value.amount} / {unique.value.capacity}</td>
+    <td className='stockpile'>
+      <Link to={`/${unique.value.product}`}>
+        {Math.floor(unique.value.amount)} / {unique.value.capacity}
+      </Link>
+    </td>
   </tr>
 
 interface Unique<T> {

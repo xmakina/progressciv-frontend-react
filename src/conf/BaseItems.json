@@ -1,108 +1,181 @@
 {
-    "items": [
-    {
-        "product": "wheat",
-        "quantity": 2,
-        "time": 1000,
-        "startingActive": 1,
-        "upgrades": [{
+    "items": [{
+            "product": "coal",
+            "quantity": 1,
+            "time": 1000,
+            "startingActive": 1,
+            "upgrades": [{
                 "aspect": "production",
                 "operation": "+",
                 "amount": 1,
-                "demands": { "farm": 1 }
-            }
-        ]
-    },
-    {
-        "product": "wood",
-        "quantity": 1,
-        "time": 1000,
-        "startingActive": 1,
-        "upgrades": [{
-                "aspect": "production",
-                "operation": "+",
-                "amount": 1,
-                "demands": { "forest": 1 }
-            }
-        ]
-    },
-    {
-        "product": "worker",
-        "quantity": 1,
-        "time": 3000,
-        "startingActive": 1,
-        "demands": { "wheat": 10 }
-    },
-    {
-        "product": "farm",
-        "quantity": 1,
-        "time": 10000,
-        "startingActive": 1,
-        "demands": {
-            "wood": 5,
-            "wheat": 2
+                "demands": { "mine": 1 }
+            }]
         },
-        
-        "upgrades": [{
-            "aspect": "production",
-            "operation": "+",
-            "amount": 1,
-            "demands": { "building-site": 1 }
-        }]
-
-    },
-    {
-        "product": "forest",
-        "quantity": 1,
-        "time": 10000,
-        "startingActive": 1,
-        "demands": {
-            "wood": 10
+        {
+            "product": "iron",
+            "quantity": 1,
+            "time": 1000,
+            "startingActive": 1,
+            "upgrades": [{
+                "aspect": "production",
+                "operation": "+",
+                "amount": 1,
+                "demands": { "mine": 1 }
+            }]
+        },
+        {
+            "product": "copper",
+            "quantity": 1,
+            "time": 1000,
+            "startingActive": 1,
+            "upgrades": [{
+                "aspect": "production",
+                "operation": "+",
+                "amount": 1,
+                "demands": { "mine": 1 }
+            }]
+        },
+        {
+            "product": "stone",
+            "quantity": 1,
+            "time": 1000,
+            "startingActive": 1,
+            "upgrades": [{
+                "aspect": "production",
+                "operation": "+",
+                "amount": 1,
+                "demands": { "mine": 1 }
+            }]
+        },
+        {
+            "product": "iron plate",
+            "quantity": 1,
+            "time": 3000,
+            "startingActive": 0,
+            "demands": { "iron": 1, "coal": 0.1 },
+            "upgrades": [{
+                "aspect": "production",
+                "operation": "+",
+                "amount": 1,
+                "demands": { "furnace": 1 }
+            }]
+        },
+        {
+            "product": "copper plate",
+            "quantity": 1,
+            "time": 3000,
+            "startingActive": 0,
+            "demands": { "copper": 1, "coal": 0.1 },
+            "upgrades": [{
+                "aspect": "production",
+                "operation": "+",
+                "amount": 1,
+                "demands": { "furnace": 1 }
+            }]
+        },
+        {
+            "product": "furnace",
+            "quantity": 1,
+            "time": 500,
+            "startingActive": 1,
+            "demands": { "stone": 5 },
+            "upgrades": [{
+                "aspect": "production",
+                "operation": "+",
+                "amount": 1,
+                "demands": { "furnace": 1 }
+            }]
+        },
+        {
+            "product": "copper wire",
+            "quantity": 2,
+            "time": 500,
+            "startingActive": 1,
+            "demands": { "copper plate": 1 },
+            "upgrades": [{
+                "aspect": "production",
+                "operation": "+",
+                "amount": 1,
+                "demands": { "assembling machine": 1 }
+            }]
+        },
+        {
+            "product": "electronic circuit",
+            "quantity": 1,
+            "time": 500,
+            "startingActive": 1,
+            "demands": { "copper wire": 3, "iron plate": 1 },
+            "upgrades": [{
+                "aspect": "production",
+                "operation": "+",
+                "amount": 1,
+                "demands": { "assembling machine": 1 }
+            }]
+        },
+        {
+            "product": "iron gear wheel",
+            "quantity": 1,
+            "startingActive": 1,
+            "time": 500,
+            "demands": { "iron plate": 2 },
+            "upgrades": [{
+                "aspect": "production",
+                "operation": "+",
+                "amount": 1,
+                "demands": { "assembling machine": 1 }
+            }]
+        },
+        {
+            "product": "assembling machine",
+            "quantity": 1,
+            "startingActive": 1,
+            "time": 500,
+            "demands": { "iron plate": 9, "iron gear wheel": 5, "electronic circuit": 3 },
+            "upgrades": [{
+                "aspect": "production",
+                "operation": "+",
+                "amount": 1,
+                "demands": { "assembling machine": 1 }
+            }]
+        },
+        {
+            "product": "automation science pack",
+            "quantity": 1,
+            "startingActive": 1,
+            "time": 5000,
+            "demands": { "copper plate": 1, "iron gear wheel": 1 },
+            "upgrades": [{
+                "aspect": "production",
+                "operation": "+",
+                "amount": 1,
+                "demands": { "assembling machine": 1 }
+            }]
+        },
+        {
+            "product": "lab",
+            "quantity": 1,
+            "startingActive": 1,
+            "time": 3000,
+            "demands": { "electronic circuit": 10, "iron gear wheel": 12, "iron plate": 2 },
+            "upgrades": [{
+                "aspect": "production",
+                "operation": "+",
+                "amount": 1,
+                "demands": { "assembling machine": 1 }
+            }]
+        },
+        {
+            "product": "research",
+            "quantity": 1,
+            "time": 3000,
+            "startingActive": 0,
+            "demands": { "automation science pack": 1 },
+            "upgrades": [{
+                "aspect": "production",
+                "operation": "+",
+                "amount": 1,
+                "demands": { "lab": 1 }
+            }]
         }
-    },
-    {
-        "product": "coal",
-        "quantity": 5,
-        "time": 8000,
-        "startingActive": 0,
-        
-        "upgrades": [{
-            "aspect": "production",
-            "operation": "+",
-            "amount": 1,
-            "demands": { "mine": 1 }
-        }]
-    },
-    {
-        "product": "fuel",
-        "quantity": 1,
-        "time": 2000,
-        "startingActive": 1,
-        "demands": {"wood": 3}
-    },
-    {
-        "product": "fuel",
-        "quantity": 5,
-        "time": 2000,
-        "startingActive": 1,
-        "demands": {"coal": 1}
-    },
-    {
-        "product": "mine",
-        "quantity": 1,
-        "time": 20000,
-        "startingActive": 1,
-        "demands": {
-            "wood": 25
-        }
-    },
-    {
-        "product": "furnace",
-        "quantity": 1,
-        "time": 20000,
-        "startingActive": 1,
-        "demands": {
-            "stone": 5
-        }
-    }]
+    ]
 }

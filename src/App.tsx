@@ -9,16 +9,19 @@ import { HashRouter } from 'react-router-dom'
 import logo from './logo.png'
 
 let isRunning: boolean = false
-const Update = (progressCivAPI: ProgressCivAPI) => () => {
-  if (isRunning) {
+const Update = (progressCivAPI: ProgressCivAPI): void => {
+  if (!isRunning) {
+    isRunning = true
+  } else {
     console.log('killed')
     return
   }
 
-  isRunning = true
-  progressCivAPI.Update()
-  window.setTimeout(Update(progressCivAPI), 25)
-  isRunning = false
+  window.setTimeout(() => {
+    progressCivAPI.Update()
+    isRunning = false
+    Update(progressCivAPI)
+  }, 25)
 }
 
 function App (): ReactElement {
@@ -33,7 +36,8 @@ function App (): ReactElement {
     progressCivAPI.Instance.systems.push(storageRenderSystem)
 
     save.current = () => progressCivAPI.Save()
-    window.setTimeout(Update(progressCivAPI), 100)
+    Update(progressCivAPI)
+    isRunning = true
   }, [])
 
   return (
